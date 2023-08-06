@@ -53,7 +53,6 @@ export const PlayerStats = ({ player }: Props) => {
 
           <div className="player-stats__country">
             <img src={country.picture.url} alt="country" />
-            <span className="player-stats__country-name">{country.code}</span>
           </div>
         </div>
 

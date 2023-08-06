@@ -6,6 +6,7 @@ import { GET_MATCHES } from "../services/matches";
 import { RootState } from "../redux/store";
 import { createSelector } from "@reduxjs/toolkit";
 import { PlayerStats } from "./PlayerStats";
+import { ComparePlayers } from "./ComparePlayers";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -34,22 +35,13 @@ function App() {
     }
   }, [dispatch, matchesData]);
 
-  const { players } = useAppSelector(
-    createSelector(
-      (state: RootState) => state,
-      ({ players }) => players
-    )
-  );
-
   if (playersLoading || matchesLoading) return <p>Loading...</p>;
   if (playersError || matchesError) return <p>Error</p>;
 
   return (
     <div className="app">
       <div className="app__container">
-        {players.map((player) => (
-          <PlayerStats key={player.id} player={player} />
-        ))}
+        <ComparePlayers />
       </div>
     </div>
   );
