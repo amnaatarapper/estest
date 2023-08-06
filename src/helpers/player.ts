@@ -1,6 +1,6 @@
 import { Match } from "../types/matches";
 import { Player } from "../types/players";
-import { calculateDurationInMinutes, formatDate } from "./date";
+import { formatDate } from "./date";
 
 export const calcWinAndLoses = (
   id: Player["id"],
