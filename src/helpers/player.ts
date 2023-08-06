@@ -23,8 +23,8 @@ export const parseWins = (id: Player["id"], matches: Match[]) => {
 
   const parsedWins = matches
     .filter((match) => match.winner.id === id)
-    .map(({ startTime, players, id }) => ({
-      id,
+    .map(({ startTime, players, id: matchId }) => ({
+      id: matchId,
       date: formatDate(startTime),
       opponent: players.filter((player) => player.id !== id)[0],
     }));
@@ -33,16 +33,16 @@ export const parseWins = (id: Player["id"], matches: Match[]) => {
 };
 
 export const gramsToKilograms = (weightInGrams: number) => {
-  if (typeof weightInGrams !== "number") {
-    throw new Error("Input should be a number.");
+  if (typeof weightInGrams !== "number" || weightInGrams < 0) {
+    throw new Error("Input should be a valid and positive number.");
   }
 
   return weightInGrams / 1000;
 };
 
 export const cmToMeters = (heightInCm: number) => {
-  if (typeof heightInCm !== "number") {
-    throw new Error("Input should be a number.");
+  if (typeof heightInCm !== "number" || heightInCm < 0) {
+    throw new Error("Input should be a valid and positive number.");
   }
 
   return heightInCm / 100;
