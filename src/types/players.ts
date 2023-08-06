@@ -1,7 +1,4 @@
-enum Sex {
-  MAN = "MAN",
-  WOMAN = "WOMAN",
-}
+type Sex = "MAN" | "WOMAN";
 
 type Picture = {
   url: string;

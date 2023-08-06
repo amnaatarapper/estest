@@ -1,10 +1,23 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  PreloadedState,
+  combineReducers,
+  configureStore,
+} from "@reduxjs/toolkit";
 import playersSlice from "./slices/players";
 import matchesSlice from "./slices/matches";
 
-export const store = configureStore({
-  reducer: { players: playersSlice, matches: matchesSlice },
+const rootReducer = combineReducers({
+  players: playersSlice,
+  matches: matchesSlice,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+};
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
