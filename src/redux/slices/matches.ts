@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Match } from "../../types/matches";
 
 export interface PlayersState {
@@ -13,10 +13,12 @@ export const matchesSlice = createSlice({
   name: "matches",
   initialState,
   reducers: {
-    placeholder: (state) => {},
+    init: (state, action: PayloadAction<Match[]>) => {
+      state.matches = action.payload;
+    },
   },
 });
 
-export const { placeholder } = matchesSlice.actions;
+export const { init } = matchesSlice.actions;
 
 export default matchesSlice.reducer;

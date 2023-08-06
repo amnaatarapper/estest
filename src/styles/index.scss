@@ -1,0 +1,75 @@
+@import "variables.scss";
+
+/* ---------------------------------- Reset --------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $color-primary;
+  line-height: 1.6;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+input {
+  font-family: $font-secondary;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+/* ---------------------------------- End Reset --------------------------------- */
+
+/* --------------------------------- Global --------------------------------- */
+.global {
+  position: relative;
+}
+
+.subtitle {
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $color-black-30;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 3px;
+}
+
+.text {
+  font-family: $font-secondary;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $color-primary-light;
+}
+
+.container {
+  padding: 0 7rem;
+
+  @media (max-width: 992px) {
+    padding: 0 1rem;
+  }
+}
+/* --------------------------------- End Global --------------------------------- */
+
+/* --------------------------------- Components --------------------------------- */
+@import "App.scss";
+@import "PlayerStats.scss";
+/* --------------------------------- EndComponents --------------------------------- */

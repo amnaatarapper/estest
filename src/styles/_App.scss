@@ -1,0 +1,28 @@
+.app {
+  max-height: 100vh;
+  overflow-y: scroll;
+
+  &__container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1140px;
+
+    @media (max-width: 1140px) {
+      flex-direction: column;
+    }
+  }
+
+  &::before {
+    content: "";
+    background-image: url("../assets/background.jpeg");
+    position: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    min-height: var(--original-viewport-height);
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+}

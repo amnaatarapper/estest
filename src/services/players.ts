@@ -13,6 +13,9 @@ export const GET_PLAYERS = gql`
       }
       country {
         code
+        picture {
+          url
+        }
       }
       stats {
         rank
