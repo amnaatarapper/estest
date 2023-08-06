@@ -1,17 +1,32 @@
 import { useState } from "react";
 import { Player } from "../../types/players";
+import { useAppSelector } from "../../redux/hooks";
+import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "../../redux/store";
+import {
+  calcWinAndLoses,
+  cmToMeters,
+  gramsToKilograms,
+} from "../../helpers/player";
 
 type Props = {
   player: Player;
 };
 export const PlayerStats = ({ player }: Props) => {
-  const { firstname, lastname, picture, country, sex, stats } = player;
+  const { matches } = useAppSelector(
+    createSelector(
+      (state: RootState) => state,
+      ({ matches }) => matches
+    )
+  );
+
+  const { id, firstname, lastname, picture, country, sex, stats } = player;
 
   const { age, height, points, rank, weight } = stats;
 
-  // const { wins, losses } = computeMatchStats(last);
-
   const [withDetails, setWithDetails] = useState(false);
+
+  const { wins, loses } = calcWinAndLoses(id, matches);
 
   return (
     <div
@@ -62,11 +77,11 @@ export const PlayerStats = ({ player }: Props) => {
             </div>
             <div className="player-stats__block">
               <h5 className="subtitle">Weight</h5>
-              <p className="text">{weight}</p>
+              <p className="text">{gramsToKilograms(weight)}kg</p>
             </div>
             <div className="player-stats__block">
               <h5 className="subtitle">Height</h5>
-              <p className="text">{height}</p>
+              <p className="text">{cmToMeters(height)}m</p>
             </div>
             <div className="player-stats__block">
               <h5 className="subtitle">Sex</h5>
@@ -79,13 +94,14 @@ export const PlayerStats = ({ player }: Props) => {
             <div className="player-stats__block">
               <h5 className="subtitle">Wins/Loses</h5>
               <p className="text">
-                {height}/{height}
+                {wins}/{loses}
               </p>
             </div>
           </div>
+
           {withDetails && (
             <div className="player-stats__titles">
-              <h5 className="subtitle">Career titles</h5>
+              <h5 className="subtitle">Matches won details</h5>
               <div className="player-stats__title-year">
                 <p className="text">
                   2021 <span>- 5</span>

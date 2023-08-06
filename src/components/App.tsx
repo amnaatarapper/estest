@@ -41,15 +41,6 @@ function App() {
     )
   );
 
-  const { matches } = useAppSelector(
-    createSelector(
-      (state: RootState) => state,
-      ({ matches }) => matches
-    )
-  );
-
-  console.log(players, matches);
-
   if (playersLoading || matchesLoading) return <p>Loading...</p>;
   if (playersError || matchesError) return <p>Error</p>;
 
