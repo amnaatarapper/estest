@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { GET_PLAYERS } from "./services/players";
+import { GET_PLAYERS } from "../services/players";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "./redux/hooks";
-import { GET_MATCHES } from "./services/matches";
-import { RootState } from "./redux/store";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { GET_MATCHES } from "../services/matches";
+import { RootState } from "../redux/store";
 import { createSelector } from "@reduxjs/toolkit";
-import { PlayerStats } from "./components/PlayerStats";
+import { PlayerStats } from "./PlayerStats";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -50,20 +50,15 @@ function App() {
 
   console.log(players, matches);
 
-  const [PlayerA, PlayerB] = players;
-
   if (playersLoading || matchesLoading) return <p>Loading...</p>;
   if (playersError || matchesError) return <p>Error</p>;
 
   return (
     <div className="app">
       <div className="app__container">
-        {players.length && (
-          <>
-            <PlayerStats key={1} player={PlayerA} />
-            <PlayerStats key={2} player={PlayerB} />
-          </>
-        )}
+        {players.map((player) => (
+          <PlayerStats key={player.id} player={player} />
+        ))}
       </div>
     </div>
   );

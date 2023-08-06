@@ -9,6 +9,11 @@ export const GET_MATCHES = gql`
         firstname
         lastname
       }
+      winner {
+        id
+      }
+      startTime
+      endTime
     }
   }
 `;

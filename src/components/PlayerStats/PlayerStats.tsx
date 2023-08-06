@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Player } from "../../types/players";
 
-type Props = { player: Player };
+type Props = {
+  player: Player;
+};
 export const PlayerStats = ({ player }: Props) => {
   const { firstname, lastname, picture, country, sex, stats } = player;
 
@@ -8,8 +11,13 @@ export const PlayerStats = ({ player }: Props) => {
 
   // const { wins, losses } = computeMatchStats(last);
 
+  const [withDetails, setWithDetails] = useState(false);
+
   return (
-    <div className="player-stats" title="details">
+    <div
+      className={`player-stats ${withDetails ? "with-details" : ""}`}
+      onClick={() => setWithDetails(!withDetails)}
+    >
       <div className="player-stats__content">
         <div className="player-stats__header">
           <img
@@ -68,121 +76,129 @@ export const PlayerStats = ({ player }: Props) => {
               <h5 className="subtitle">Matches</h5>
               <p className="text">{height}</p>
             </div>
+            <div className="player-stats__block">
+              <h5 className="subtitle">Wins/Loses</h5>
+              <p className="text">
+                {height}/{height}
+              </p>
+            </div>
           </div>
-          {/* <div className="player-stats__titles">
-            <h5 className="subtitle">Career titles</h5>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2021 <span>- 5</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Indoor/Hard)</li>
-                <li>Wimbledon (Outdoor/Grass)</li>
-                <li>Roland Garros (Outdoor/Clay)</li>
-                <li>Belgrade 2 (Outdoor/Clay)</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
+          {withDetails && (
+            <div className="player-stats__titles">
+              <h5 className="subtitle">Career titles</h5>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2021 <span>- 5</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Indoor/Hard)</li>
+                  <li>Wimbledon (Outdoor/Grass)</li>
+                  <li>Roland Garros (Outdoor/Clay)</li>
+                  <li>Belgrade 2 (Outdoor/Clay)</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
+              <div className="player-stats__title-year">
+                <p className="text">
+                  2020 <span>- 4</span>
+                </p>
+                <ul>
+                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
+                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
+                  <li>Dubai Outdoor/Hard</li>
+                  <li>Australian Open (Outdoor/Hard)</li>
+                </ul>
+              </div>
             </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-            <div className="player-stats__title-year">
-              <p className="text">
-                2020 <span>- 4</span>
-              </p>
-              <ul>
-                <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                <li>Dubai Outdoor/Hard</li>
-                <li>Australian Open (Outdoor/Hard)</li>
-              </ul>
-            </div>
-          </div> */}
+          )}
         </div>
       </div>
     </div>
