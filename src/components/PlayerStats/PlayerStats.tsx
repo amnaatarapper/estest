@@ -7,7 +7,9 @@ import {
   calcWinAndLoses,
   cmToMeters,
   gramsToKilograms,
+  parseWins,
 } from "../../helpers/player";
+import { CloseDetails } from "../ComparePlayers/components/CloseDetails";
 
 type Props = {
   player: Player;
@@ -28,11 +30,20 @@ export const PlayerStats = ({ player }: Props) => {
 
   const { wins, loses } = calcWinAndLoses(id, matches);
 
+  const parsedWins = parseWins(id, matches);
+
+  const toggleDetails = () => {
+    setWithDetails(!withDetails);
+  };
+
   return (
     <div
       className={`player-stats ${withDetails ? "with-details" : ""}`}
-      onClick={() => setWithDetails(!withDetails)}
+      title="player stats"
+      onClick={toggleDetails}
     >
+      {withDetails && <CloseDetails onClick={toggleDetails} />}
+
       <div className="player-stats__content">
         <div className="player-stats__header">
           <img
@@ -100,118 +111,13 @@ export const PlayerStats = ({ player }: Props) => {
 
           {withDetails && (
             <div className="player-stats__titles">
-              <h5 className="subtitle">Matches won details</h5>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2021 <span>- 5</span>
+              <h5 className="subtitle">Matches won</h5>
+              {parsedWins.map(({ id, date, opponent }) => (
+                <p key={id} className="text">
+                  {date}, won a match against{" "}
+                  {`${opponent.firstname} ${opponent.lastname}`}
                 </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Indoor/Hard)</li>
-                  <li>Wimbledon (Outdoor/Grass)</li>
-                  <li>Roland Garros (Outdoor/Clay)</li>
-                  <li>Belgrade 2 (Outdoor/Clay)</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
-              <div className="player-stats__title-year">
-                <p className="text">
-                  2020 <span>- 4</span>
-                </p>
-                <ul>
-                  <li>ATP Masters 1000 Paris (Outdoor/Clay)</li>
-                  <li>ATP Masters 1000 Cincinnati (Outdoor/Hard)</li>
-                  <li>Dubai Outdoor/Hard</li>
-                  <li>Australian Open (Outdoor/Hard)</li>
-                </ul>
-              </div>
+              ))}
             </div>
           )}
         </div>

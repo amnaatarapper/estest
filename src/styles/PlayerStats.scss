@@ -13,16 +13,17 @@
     flex: 0 0 100%;
   }
 
-  &:hover,
-  &:active {
-    transform: scale(1.05);
-    z-index: 9;
-  }
+  &:not(.with-details) {
+    &:hover,
+    &:active {
+      transform: scale(1.05);
+      z-index: 9;
+    }
 
-  &:active {
-    transform: scale(1.05) translateY(5px);
+    &:active {
+      transform: scale(1.05) translateY(5px);
+    }
   }
-
   @media (max-width: 1140px) {
     padding: 1rem 0;
   }
@@ -32,6 +33,7 @@
     padding: 3rem;
     width: 570px;
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 999;
   }
 
   &__header {
@@ -171,5 +173,31 @@
 
   .text {
     font-size: 0.875rem;
+  }
+}
+
+.close {
+  position: relative;
+  width: 3rem;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &__line {
+    content: "";
+    position: absolute;
+    width: 3rem;
+    height: 2px;
+    background-color: white;
+    display: inline-block;
+    transform: rotate(-135deg);
+
+    &:first-child {
+      transform: rotate(135deg);
+    }
   }
 }

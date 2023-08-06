@@ -1,5 +1,6 @@
 import { Match } from "../types/matches";
 import { Player } from "../types/players";
+import { calculateDurationInMinutes, formatDate } from "./date";
 
 export const calcWinAndLoses = (
   id: Player["id"],
@@ -13,6 +14,22 @@ export const calcWinAndLoses = (
   const loses = matches.length - wins;
 
   return { wins, loses };
+};
+
+export const parseWins = (id: Player["id"], matches: Match[]) => {
+  if (!Array.isArray(matches) || !matches) {
+    throw new Error("Array of matches is expected");
+  }
+
+  const parsedWins = matches
+    .filter((match) => match.winner.id === id)
+    .map(({ startTime, players, id }) => ({
+      id,
+      date: formatDate(startTime),
+      opponent: players.filter((player) => player.id !== id)[0],
+    }));
+
+  return parsedWins;
 };
 
 export const gramsToKilograms = (weightInGrams: number) => {

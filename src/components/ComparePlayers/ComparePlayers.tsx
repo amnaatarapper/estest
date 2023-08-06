@@ -13,10 +13,12 @@ export const ComparePlayers = () => {
 
   const [playerA, playerB] = players;
 
-  return (
-    <>
-      <PlayerStats key={playerA.id} player={playerA} />
-      <PlayerStats key={playerB.id} player={playerB} />
-    </>
-  );
+  if (players.length) {
+    return (
+      <>
+        <PlayerStats key={playerA.id} player={playerA} />
+        <PlayerStats key={playerB.id} player={playerB} />
+      </>
+    );
+  }
 };
