@@ -1,14 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { GET_PLAYERS } from "../services/players";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { GET_MATCHES } from "../services/matches";
-import { RootState } from "../redux/store";
-import { createSelector } from "@reduxjs/toolkit";
-import { PlayerStats } from "./PlayerStats";
 import { ComparePlayers } from "./ComparePlayers";
 
-function App() {
+export const App = () => {
   const dispatch = useAppDispatch();
 
   const {
@@ -45,6 +42,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};
