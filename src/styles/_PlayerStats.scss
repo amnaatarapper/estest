@@ -4,9 +4,9 @@
   align-items: center;
   width: 100%;
   max-height: 100%;
+  overflow: hidden;
   z-index: 2;
   padding: 7rem 0;
-  overflow-y: scroll;
   transition: transform 250ms;
 
   &.with-details {
@@ -16,14 +16,15 @@
   &:not(.with-details) {
     &:hover,
     &:active {
-      transform: scale(1.05);
+      transform: scale(1.02);
       z-index: 9;
     }
 
     &:active {
-      transform: scale(1.05) translateY(5px);
+      transform: scale(1.02) translateY(5px);
     }
   }
+
   @media (max-width: 1140px) {
     padding: 1rem 0;
   }
@@ -32,35 +33,37 @@
     background-color: $color-white;
     padding: 3rem;
     width: 570px;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     z-index: 999;
   }
 
   &__header {
-    position: relative;
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 4rem;
-    height: 180px;
     justify-content: space-between;
+
+    @media (max-width: 500px) {
+      gap: 16px;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__picture {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 12rem;
     height: 12rem;
     object-fit: cover;
-    z-index: 1;
   }
 
   &__name {
-    z-index: 2;
-    position: relative;
     span {
-      position: absolute;
-      bottom: 0;
-      left: -15px;
       display: block;
     }
   }
@@ -72,7 +75,7 @@
     font-weight: 600;
     color: $color-white;
     -webkit-text-stroke: 8px $color-primary-light;
-    margin-bottom: -3.5rem;
+    margin-bottom: -2.5rem;
     letter-spacing: 0.3rem;
 
     &::after {
@@ -102,33 +105,7 @@
       width: 10rem;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
       margin-bottom: 0.5rem;
-
-      // @media (max-width: 1250px) {
-      //   width: 8rem;
-      // }
-
-      // @media (max-width: 800px) {
-      //   width: 5.5rem;
-      // }
     }
-  }
-
-  &__country-name {
-    font-family: $font-secondary;
-    font-size: 2.75rem;
-    font-weight: 400;
-    color: $color-black-30;
-    text-transform: uppercase;
-    letter-spacing: 1.25rem;
-    margin-right: -1.25rem;
-
-    // @media (max-width: 1250px) {
-    //   font-size: 2.25rem;
-    // }
-
-    // @media (max-width: 800px) {
-    //   font-size: 1.25rem;
-    // }
   }
 
   &__body {
@@ -162,10 +139,6 @@
     margin-bottom: 0.75rem;
   }
 
-  .close {
-    margin-bottom: 2rem;
-  }
-
   .subtitle {
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
@@ -185,6 +158,7 @@
   justify-content: center;
   background-color: transparent;
   border: 0;
+  margin-bottom: 2rem;
   cursor: pointer;
 
   &__line {

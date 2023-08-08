@@ -52,6 +52,10 @@ export const PlayerStats = ({ player }: Props) => {
             alt={`${firstname} ${lastname} picture`}
           />
 
+          <div className="player-stats__country">
+            <img src={country.picture.url} alt="country" />
+          </div>
+
           <h2 className="player-stats__name">
             <span
               className="player-stats__firstname"
@@ -61,10 +65,6 @@ export const PlayerStats = ({ player }: Props) => {
             </span>
             <span className="player-stats__lastname">{lastname}</span>
           </h2>
-
-          <div className="player-stats__country">
-            <img src={country.picture.url} alt="country" />
-          </div>
         </div>
 
         <div className="player-stats__body">
@@ -77,10 +77,7 @@ export const PlayerStats = ({ player }: Props) => {
               <h5 className="subtitle">Points</h5>
               <p className="text">{points}</p>
             </div>
-            <div className="player-stats__block">
-              <h5 className="subtitle">Country</h5>
-              <p className="text">{country.code}</p>
-            </div>
+
             <div className="player-stats__block">
               <h5 className="subtitle">Age</h5>
               <p className="text">{age}</p>
@@ -106,6 +103,10 @@ export const PlayerStats = ({ player }: Props) => {
               <p className="text">
                 {wins}/{loses}
               </p>
+            </div>
+            <div className="player-stats__block">
+              <h5 className="subtitle ">Total Time</h5>
+              <p className="text text-3xl">1000h</p>
             </div>
           </div>
 

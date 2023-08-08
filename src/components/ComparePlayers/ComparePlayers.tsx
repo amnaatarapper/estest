@@ -15,10 +15,10 @@ export const ComparePlayers = () => {
 
   if (players.length) {
     return (
-      <>
+      <div className="compare-players">
         <PlayerStats key={playerA.id} player={playerA} />
         <PlayerStats key={playerB.id} player={playerB} />
-      </>
+      </div>
     );
   }
 };

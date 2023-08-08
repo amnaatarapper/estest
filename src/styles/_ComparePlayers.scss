@@ -1,0 +1,10 @@
+.compare-players {
+  display: flex;
+  gap: 2rem;
+
+  overflow-y: hidden;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+  }
+}
