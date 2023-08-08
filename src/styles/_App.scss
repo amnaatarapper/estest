@@ -1,12 +1,4 @@
 .app {
-  max-height: 100vh;
-  overflow-y: scroll;
-
-  &__container {
-    margin: 0 auto;
-    max-width: 1140px;
-  }
-
   &::before {
     content: "";
     background-image: url("../assets/background.jpeg");

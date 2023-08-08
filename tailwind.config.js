@@ -7,6 +7,10 @@ export default {
       md: { max: "600px" },
       sm: { max: "499px" },
     },
+    fontFamily: {
+      primary: ["Mulish", "sans-serif"],
+      secondary: ["Montserrat", "serif"],
+    },
   },
   plugins: [],
 };

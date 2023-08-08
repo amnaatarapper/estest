@@ -18,47 +18,10 @@ html {
   font-size: 16px;
 }
 
-body {
-  font-family: $font-primary;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: $color-primary;
-  line-height: 1.6;
-}
-
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
 /* ---------------------------------- End Reset --------------------------------- */
-
-/* --------------------------------- Global --------------------------------- */
-.global {
-  position: relative;
-}
-
-.subtitle {
-  font-family: $font-primary;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: $color-black-30;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 3px;
-}
-
-.text {
-  font-family: $font-secondary;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: $color-primary-light;
-}
-
-/* --------------------------------- End Global --------------------------------- */
 
 /* --------------------------------- Components --------------------------------- */
 @import "App.scss";
-@import "ComparePlayers.scss";
 @import "PlayerStats.scss";
+@import "CloseDetails.scss";
 /* --------------------------------- EndComponents --------------------------------- */
