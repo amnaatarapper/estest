@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { API_URL } from "../config";
 
 export const client = new ApolloClient({
-  uri: "https://kf9p4bkih6.execute-api.eu-west-1.amazonaws.com/dev/",
+  uri: API_URL,
   cache: new InMemoryCache(),
 });

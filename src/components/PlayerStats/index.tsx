@@ -79,7 +79,7 @@ export const PlayerStats = ({ player }: Props): JSX.Element => {
           </div>
           <div>
             <h3 className="text-gray-400">Matches</h3>
-            <p className="text-orange-500">{height}</p>
+            <p className="text-orange-500">{wins + loses}</p>
           </div>
           <div>
             <h3 className="text-gray-400">Wins/Loses</h3>
