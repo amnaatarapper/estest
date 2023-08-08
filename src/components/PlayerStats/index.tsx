@@ -1,36 +1,21 @@
 import { useState } from "react";
 import { Player } from "../../types/players";
-import { useAppSelector } from "../../redux/hooks";
-import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "../../redux/store";
-import {
-  calcWinAndLoses,
-  cmToMeters,
-  gramsToKilograms,
-  parseWins,
-} from "../../helpers/player";
+
+import { cmToMeters, gramsToKilograms } from "../../helpers/player";
 import { CloseDetails } from "../CloseDetails";
+import useMatches from "../../hooks/useMatches";
 
 type Props = {
   player: Player;
 };
 export const PlayerStats = ({ player }: Props): JSX.Element => {
-  const { matches } = useAppSelector(
-    createSelector(
-      (state: RootState) => state,
-      ({ matches }) => matches
-    )
-  );
-
   const { id, firstname, lastname, picture, country, sex, stats } = player;
 
   const { age, height, points, rank, weight } = stats;
 
+  const { wins, loses, parsedWins, totalPlaytime } = useMatches(id);
+
   const [withDetails, setWithDetails] = useState(false);
-
-  const { wins, loses } = calcWinAndLoses(id, matches);
-
-  const parsedWins = parseWins(id, matches);
 
   const toggleDetails = () => {
     setWithDetails(!withDetails);
@@ -103,8 +88,8 @@ export const PlayerStats = ({ player }: Props): JSX.Element => {
             </p>
           </div>
           <div>
-            <h3 className="text-gray-400 ">Total Time</h3>
-            <p className="text-orange-500">1000h</p>
+            <h3 className="text-gray-400 ">Play Time</h3>
+            <p className="text-orange-500">{Math.floor(totalPlaytime)}h</p>
           </div>
         </div>
 

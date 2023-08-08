@@ -7,3 +7,9 @@ export type Match = {
   startTime: string;
   endTime: string;
 };
+
+export type ParsedWin = {
+  id: string;
+  date: string;
+  opponent: Player;
+};

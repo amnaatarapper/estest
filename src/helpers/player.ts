@@ -1,6 +1,6 @@
-import { Match } from "../types/matches";
+import { Match, ParsedWin } from "../types/matches";
 import { Player } from "../types/players";
-import { formatDate } from "./date";
+import { calculateDurationInHours, formatDate } from "./date";
 
 export const calcWinAndLoses = (
   id: Player["id"],
@@ -16,7 +16,27 @@ export const calcWinAndLoses = (
   return { wins, loses };
 };
 
-export const parseWins = (id: Player["id"], matches: Match[]) => {
+export const findMatchesByPlayerId = (
+  id: Player["id"],
+  matches: Match[]
+): Match[] => {
+  return matches.filter((match) => {
+    return match.players.some((player) => player.id === id);
+  });
+};
+
+export const calcTotalPlaytimeInHours = (
+  id: Player["id"],
+  matches: Match[]
+): number => {
+  return findMatchesByPlayerId(id, matches).reduce(
+    (acc, { startTime, endTime }) =>
+      acc + calculateDurationInHours(startTime, endTime),
+    0
+  );
+};
+
+export const parseWins = (id: Player["id"], matches: Match[]): ParsedWin[] => {
   if (!Array.isArray(matches) || !matches) {
     throw new Error("Array of matches is expected");
   }
@@ -32,7 +52,7 @@ export const parseWins = (id: Player["id"], matches: Match[]) => {
   return parsedWins;
 };
 
-export const gramsToKilograms = (weightInGrams: number) => {
+export const gramsToKilograms = (weightInGrams: number): number => {
   if (typeof weightInGrams !== "number" || weightInGrams < 0) {
     throw new Error("Input should be a valid and positive number.");
   }
@@ -40,7 +60,7 @@ export const gramsToKilograms = (weightInGrams: number) => {
   return weightInGrams / 1000;
 };
 
-export const cmToMeters = (heightInCm: number) => {
+export const cmToMeters = (heightInCm: number): number => {
   if (typeof heightInCm !== "number" || heightInCm < 0) {
     throw new Error("Input should be a valid and positive number.");
   }

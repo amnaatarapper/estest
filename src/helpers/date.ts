@@ -7,3 +7,14 @@ export const formatDate = (dateString: string): string => {
 
   return `${day}-${month}-${year}`;
 };
+
+export const calcTimeDifferenceInMs = (startDate: string, endDate: string) => {
+  return new Date(endDate).getTime() - new Date(startDate).getTime();
+};
+
+export const calculateDurationInHours = (
+  startDate: string,
+  endDate: string
+) => {
+  return calcTimeDifferenceInMs(startDate, endDate) / (1000 * 60 * 60);
+};
